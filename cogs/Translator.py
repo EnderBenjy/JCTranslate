@@ -51,6 +51,7 @@ class Translator(commands.Cog):
 
     @commands.command()
     async def translate(self, ctx, language, *text):
+        language = language.lower()
         if (language not in googletrans.LANGUAGES
                 and language not in googletrans.LANGCODES):
             await ctx.send(embed=discord.Embed(title="Translation failed!",
@@ -66,7 +67,8 @@ class Translator(commands.Cog):
                 colour=discord.Colour(0xA6A67A),
             )
             embed.set_footer(
-                text=f"Requested by @{ctx.author.name}#{ctx.author.discriminator}",
+                text=
+                f"Requested by @{ctx.author.name}#{ctx.author.discriminator}",
                 icon_url=ctx.author.avatar_url,
             )
             await ctx.send(embed=embed)
